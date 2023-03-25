@@ -8,6 +8,6 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "node your-script.js"
+    "start": "node api/index.js"
   }
 }
