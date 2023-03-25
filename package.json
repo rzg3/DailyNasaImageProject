@@ -8,6 +8,9 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "node api/index.js"
+    "start": "nodemon api/index.js"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
