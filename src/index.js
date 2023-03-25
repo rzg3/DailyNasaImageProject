@@ -81,3 +81,5 @@ app.post('/logout', (req, res) => {
 app.listen(3000, ()=> {
     console.log("port connected");
 })
+
+module.exports = app;
