@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="58915137153-hk0sv694s7erml8d5gcb0b0taornk8s4.apps.googleusercontent.com">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="login.css">
 </head>
@@ -18,8 +19,18 @@
         <input type="submit">
 
     </form>
-
+    <a href="/auth/google">Authenticate with Google</a>
     <a href="/signup">Make a new account</a>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            }
+    
+    </script>
 
 </body>
 </html>

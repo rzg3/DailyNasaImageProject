@@ -1,8 +1,14 @@
 const express=require("express")
-const app=express()
 const path=require("path")
 const hbs=require("hbs")
 const collection=require("./mongodb")
+const passport = require('passport');
+const session = require("express-session")
+require('./auth')
+const app=express()
+app.use(session({ secret: "cats" }));
+app.use(passport.initialize());
+app.use(passport.session());
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const tempelatePath=path.join(__dirname,'./tempelates')
 app.use(express.static(__dirname + "/public/"));
@@ -11,6 +17,38 @@ app.set("view engine", "hbs")
 app.set("views",tempelatePath)
 app.use(express.urlencoded({extended:false}))
 app.get("/", (req,res)=> {
+    res.render("login")
+})
+
+function isLoggedIn(req, res, next) {
+    req.user ? next() : res.sendStatus(401);
+}
+
+app.get('/auth/google', 
+    passport.authenticate('google', { scope: ['email', 'profile'] })
+)
+
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/protected',
+        failureRedirect: '/auth/failure'
+    })
+)
+
+app.get("/protected", isLoggedIn, async(req,res)=> {
+    const apiKey = 'zaKhMQ6BgBYucqzNIR2VUxWPATgThn6rHweyU7QR';
+    const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+
+    const response = await fetch(apiUrl);
+    const data2 = await response.json();
+
+res.render("home", {
+    imageUrl: data2.url,
+    imageCaption: data2.explanation
+});
+})
+
+app.get("/auth/failure", (req,res)=> {
     res.render("login")
 })
 
