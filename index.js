@@ -6,7 +6,7 @@ const collection=require("./mongodb")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const tempelatePath=path.join(__dirname,'./tempelates')
-app.use(express.static('public'));
+app.use(express.static(__dirname + "/public/"));
 app.use(express.json())
 app.set("view engine", "hbs")
 app.set("views",tempelatePath)
