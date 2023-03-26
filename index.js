@@ -58,7 +58,9 @@ app.get("/protected", isLoggedIn, async (req, res) => {
   });
 
 app.get("/auth/failure", (req,res)=> {
-    res.render("login")
+    res.render("login", {
+        incorrect: "Failed Authentication"
+    })
 })
 
 app.get("/signup", (req,res)=> {
@@ -124,11 +126,15 @@ app.post("/login",async (req,res)=>{
               }
         }
         else{   
-            res.render("login")
+            res.render("login", {
+                incorrect: "Incorrect Password"
+            })
         }
     }
     catch{
-        res.render("login")
+        res.render("login", {
+            incorrect: "Incorrect Details"
+        })
     }
     
 })

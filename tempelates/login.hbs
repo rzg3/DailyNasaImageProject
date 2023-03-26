@@ -19,8 +19,12 @@
         <input type="submit">
 
     </form>
+    {{#if incorrect}}
+    <h2>{{incorrect}}</h2>
+    {{/if}}
     <a href="/auth/google">Authenticate with Google</a>
     <a href="/signup">Make a new account</a>
+
     <script>
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
