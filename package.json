@@ -9,5 +9,23 @@
   },
   "engines": {
     "node": "18.x"
-  }
+  },
+  "name": "dailynasaimageproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzg3/DailyNasaImageProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rzg3/DailyNasaImageProject/issues"
+  },
+  "homepage": "https://github.com/rzg3/DailyNasaImageProject#readme",
+  "description": ""
 }

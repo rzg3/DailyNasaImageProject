@@ -4,21 +4,8 @@ const path=require("path")
 const hbs=require("hbs")
 const collection=require("./mongodb")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const { v4 } = require('uuid');
 
-app.get('/api', (req, res) => {
-  const path = `/api/item/${v4()}`;
-  res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
-});
-
-app.get('/api/item/:slug', (req, res) => {
-  const { slug } = req.params;
-  res.end(`Item: ${slug}`);
-});
-
-const tempelatePath=path.join(__dirname,'../tempelates')
+const tempelatePath=path.join(__dirname,'./tempelates')
 app.use(express.static("public"));
 app.use(express.json())
 app.set("view engine", "hbs")
