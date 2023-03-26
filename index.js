@@ -35,18 +35,27 @@ app.get('/google/callback',
     })
 )
 
-app.get("/protected", isLoggedIn, async(req,res)=> {
+app.get("/protected", isLoggedIn, async (req, res) => {
     const apiKey = 'zaKhMQ6BgBYucqzNIR2VUxWPATgThn6rHweyU7QR';
     const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
-
+  
     const response = await fetch(apiUrl);
-    const data2 = await response.json();
-
-res.render("home", {
-    imageUrl: data2.url,
-    imageCaption: data2.explanation
-});
-})
+    const data = await response.json();
+  
+    if (data.media_type === "image") {
+      res.render("home", {
+        imageUrl: data.url,
+        imageCaption: data.explanation
+      });
+    } else if (data.media_type === "video") {
+      const videoUrl = data.url;
+      res.render("home", {
+        videoUrl: videoUrl,
+        videoCaption: data.title,
+        videoExplanation: data.explanation
+      });
+    }
+  });
 
 app.get("/auth/failure", (req,res)=> {
     res.render("login")
@@ -71,13 +80,22 @@ const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 const response = await fetch(apiUrl);
 const data2 = await response.json();
 
-res.render("home", {
-    imageUrl: data2.url,
-    imageCaption: data2.explanation
+if (data2.media_type === "image") {
+    res.render("home", {
+      imageUrl: data2.url,
+      imageCaption: data2.explanation
+    });
+  } else if (data2.media_type === "video") {
+    const videoUrl = data2.url;
+    res.render("home", {
+      videoUrl: videoUrl,
+      videoCaption: data2.title,
+      videoExplanation: data2.explanation
+    });
+  }
 });
 
 
-})
 
 app.post("/login",async (req,res)=>{
 
@@ -91,12 +109,21 @@ app.post("/login",async (req,res)=>{
             const response = await fetch(apiUrl);
             const data = await response.json();
 
-            res.render("home", {
-                imageUrl: data.url,
-                imageCaption: data.explanation
-            });
+            if (data.media_type === "image") {
+                res.render("home", {
+                  imageUrl: data.url,
+                  imageCaption: data.explanation
+                });
+              } else if (data.media_type === "video") {
+                const videoUrl = data.url;
+                res.render("home", {
+                  videoUrl: videoUrl,
+                  videoCaption: data.title,
+                  videoExplanation: data.explanation
+                });
+              }
         }
-        else{
+        else{   
             res.render("login")
         }
     }

@@ -5,8 +5,12 @@
     <link rel="stylesheet" type="text/css" href="home.css">
   </head>
   <body>
-    <h1 class="container">Welcome to the NASA Daily Image App</h1>
-    <img class="container" src="{{imageUrl}}" alt="{{imageCaption}}">
+    <h1 class="container">Welcome to the NASA Daily Image and Video App</h1>
+    {{#if videoUrl}}
+      <iframe src="{{videoUrl}}" frameborder="0" allowfullscreen></iframe>
+    {{else}}
+      <img class="container" src="{{imageUrl}}" alt="{{imageCaption}}">
+    {{/if}}
     <p>{{imageCaption}}</p>
     <form action="/logout" method="POST">
       <button type="submit">Logout</button>
