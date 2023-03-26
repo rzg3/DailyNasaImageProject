@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/public/home.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
   </head>
   <body>
-    <h1>Welcome to the NASA Daily Image App</h1>
-    <img src="{{imageUrl}}" alt="{{imageCaption}}">
-    <p>{{image.explanation}}</p>
+    <h1 class="container">Welcome to the NASA Daily Image App</h1>
+    <img class="container" src="{{imageUrl}}" alt="{{imageCaption}}">
+    <p>{{imageCaption}}</p>
     <form action="/logout" method="POST">
       <button type="submit">Logout</button>
     </form>

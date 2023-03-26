@@ -1,24 +1,56 @@
+/* Style the heading */
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Style the container */
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.image-container {
-  width: 80%;
-  margin-bottom: 2rem;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  max-width: 800px;
   margin: 0 auto;
+  display: block;
+}
+
+/* Style the image */
+img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+}
+
+/* Style the caption */
+p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+/* Style the logout button */
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #3e8e41;
 }
