@@ -4,14 +4,13 @@ const path=require("path")
 const hbs=require("hbs")
 const collection=require("./mongodb")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
 const tempelatePath=path.join(__dirname,'./tempelates')
 app.use(express.static(__dirname + "/public/"));
 app.use(express.json())
 app.set("view engine", "hbs")
 app.set("views",tempelatePath)
 app.use(express.urlencoded({extended:false}))
-
+let alert = require('alert');
 app.get("/", (req,res)=> {
     res.render("login")
 })
@@ -61,13 +60,12 @@ app.post("/login",async (req,res)=>{
             });
         }
         else{
-            res.send("wrong password")
+            alert("Wrong Password")
         }
     }
     catch{
 
-        res.send("wrong details")
-
+        alert("Wrong Details")
     }
     
 })
