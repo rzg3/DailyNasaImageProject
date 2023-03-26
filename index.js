@@ -10,7 +10,6 @@ app.use(express.json())
 app.set("view engine", "hbs")
 app.set("views",tempelatePath)
 app.use(express.urlencoded({extended:false}))
-let alert = require('alert');
 app.get("/", (req,res)=> {
     res.render("login")
 })
@@ -60,12 +59,11 @@ app.post("/login",async (req,res)=>{
             });
         }
         else{
-            alert("Wrong Password")
+            res.render("login")
         }
     }
     catch{
-
-        alert("Wrong Details")
+        res.render("login")
     }
     
 })
